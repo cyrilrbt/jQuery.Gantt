@@ -1299,14 +1299,14 @@
                 e.preventDefault(); // e is a jQuery Event
 
                 // attempts to normalize scroll wheel velocity
-                var delta = ( 'detail' in e ? e.detail :
-                              'wheelDelta' in e.originalEvent ? - 1/120 * e.originalEvent.wheelDelta :
-                              e.originalEvent.deltaY ? e.originalEvent.deltaY / Math.abs(e.originalEvent.deltaY) :
-                              e.originalEvent.detail );
+                //var delta = ( 'detail' in e ? e.detail :
+                //              'wheelDelta' in e.originalEvent ? - 1/120 * e.originalEvent.wheelDelta :
+                //              e.originalEvent.deltaY ? e.originalEvent.deltaY / Math.abs(e.originalEvent.deltaY) :
+                //              e.originalEvent.detail );
 
                 // simpler normalization, ignoring per-device/browser/platform acceleration & semantic variations
-                //var delta = e.detail || - (e = e.originalEvent).wheelData || e.deltaY /* || e.deltaX */ || e.detail;
-                //delta = ( delta / Math.abs(delta) ) || 0;
+                var delta = e.detail || - (e = e.originalEvent).wheelData || e.deltaY /* || e.deltaX */ || e.detail;
+                delta = ( delta / Math.abs(delta) ) || 0;
 
                 core.scrollPanel(element, -50 * delta);
 
